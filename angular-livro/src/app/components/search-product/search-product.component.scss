@@ -1,0 +1,38 @@
+.dados {
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-around;
+  padding: 5px;
+  width: 70%;
+  margin: 0 auto;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  margin-bottom: 15px;
+}
+
+.dados button {
+  background-color: #087f5b;
+}
+
+.dados button:hover {
+  transition: 0.3s;
+  background-color: #38af8b;
+}
+
+.modal-footer button[type="button"] {
+  background-color: #808080;
+}
+
+.modal-footer button[type="button"]:hover {
+  background-color: #f8f8f8;
+  transition: 0.3s;
+}
+
+.modal-footer button[type="submit"] {
+  background-color: #087f5b;
+}
+
+.modal-footer button[type="submit"]:hover {
+  transition: 0.3s;
+  background-color: #38af8b;
+}

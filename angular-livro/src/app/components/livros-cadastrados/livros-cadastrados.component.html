@@ -1,0 +1,74 @@
+<div class="container-cadastro row row-cols-2 row-cols-lg- g-2 g-lg-3">
+  <div
+    class="card border-dark mb-3"
+    style="max-width: 18rem"
+    *ngFor="let livro of listaLivros"
+  >
+    <div class="card-header">
+      <p>ID: {{ livro.id }}</p>
+      <div class="alinha-fim">
+        <a (click)="editarLivro(livro)"
+          ><img src="../../../assets/img/editar.png"
+        /></a>
+        <a (click)="deleteLivro(livro.id!)"
+          ><img src="../../../assets/img/excluir.png"
+        /></a>
+      </div>
+    </div>
+    <div class="card-body">
+      <ul>
+        <h5 class="card-title" *ngIf="!edicaoLivro || edicaoLivro !== livro">
+          Titulo: {{ livro.titulo }}
+        </h5>
+        <div *ngIf="edicaoLivro === livro">
+          <input type="text" [(ngModel)]="livro.titulo" />
+        </div>
+
+        <li>
+          <p class="card-text" *ngIf="!edicaoLivro || edicaoLivro !== livro">
+            Autor: {{ livro.autor }}
+          </p>
+          <div *ngIf="edicaoLivro === livro">
+            <input type="text" [(ngModel)]="livro.autor" />
+          </div>
+        </li>
+
+        <li>
+          <p class="card-text" *ngIf="!edicaoLivro || edicaoLivro !== livro">
+            Editora: {{ livro.editora }}
+          </p>
+          <div *ngIf="edicaoLivro === livro">
+            <input type="text" [(ngModel)]="livro.editora" />
+          </div>
+        </li>
+
+        <li>
+          <p class="card-text" *ngIf="!edicaoLivro || edicaoLivro !== livro">
+            Descrição: {{ livro.descricao }}
+          </p>
+          <div *ngIf="edicaoLivro === livro">
+            <input type="text" [(ngModel)]="livro.descricao" />
+          </div>
+        </li>
+
+        <li>
+          <p class="card-text" *ngIf="!edicaoLivro || edicaoLivro !== livro">
+            Genero: {{ livro.genero }}
+          </p>
+          <div *ngIf="edicaoLivro === livro">
+            <input type="text" [(ngModel)]="livro.genero" />
+          </div>
+        </li>
+
+        <li>
+          <p class="card-text" *ngIf="!edicaoLivro || edicaoLivro !== livro">
+            Ano de Lançamento: {{ livro.anoLancamento }}
+          </p>
+          <div *ngIf="edicaoLivro === livro">
+            <input type="text" [(ngModel)]="livro.anoLancamento" />
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
