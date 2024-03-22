@@ -15,7 +15,7 @@ import { LivroService } from 'src/app/services/livro.service';
   templateUrl: './search-product.component.html',
   styleUrls: ['./search-product.component.scss'],
 })
-export class SearchProductComponent implements OnInit{
+export class SearchProductComponent implements OnInit {
   livro: ILivros[];
 
   titulo: string = '';
@@ -31,8 +31,8 @@ export class SearchProductComponent implements OnInit{
 
   ngOnInit(): void {
     this.service
-    .getLivros()
-    .subscribe((listaLivros) => (this.livro = this.livro));
+      .getLivros()
+      .subscribe((listaLivros) => (this.livro = this.livro));
   }
 
   getLivros() {
@@ -50,7 +50,7 @@ export class SearchProductComponent implements OnInit{
         anoLancamento: this.anoLancamento,
       })
       .subscribe((novoLivro) => {
-        this.getLivros()
+        this.getLivros();
         this.limparCampos();
       });
   }

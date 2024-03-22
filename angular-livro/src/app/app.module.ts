@@ -12,6 +12,7 @@ import { LivrosCadastradosComponent } from './components/livros-cadastrados/livr
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

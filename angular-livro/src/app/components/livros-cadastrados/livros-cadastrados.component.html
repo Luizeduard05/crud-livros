@@ -7,7 +7,10 @@
     <div class="card-header">
       <p>ID: {{ livro.id }}</p>
       <div class="alinha-fim">
-        <a (click)="editarLivro(livro)"
+        <a
+          (click)="getLivroId(livro!)"
+          data-toggle="modal"
+          data-target="#modal-mensagem1"
           ><img src="../../../assets/img/editar.png"
         /></a>
         <a (click)="deleteLivro(livro.id!)"
@@ -17,58 +20,134 @@
     </div>
     <div class="card-body">
       <ul>
-        <h5 class="card-title" *ngIf="!edicaoLivro || edicaoLivro !== livro">
-          Titulo: {{ livro.titulo }}
-        </h5>
-        <div *ngIf="edicaoLivro === livro">
-          <input type="text" [(ngModel)]="livro.titulo" />
-        </div>
+        <h5 class="card-title">Titulo: {{ livro.titulo }}</h5>
 
         <li>
-          <p class="card-text" *ngIf="!edicaoLivro || edicaoLivro !== livro">
-            Autor: {{ livro.autor }}
-          </p>
-          <div *ngIf="edicaoLivro === livro">
-            <input type="text" [(ngModel)]="livro.autor" />
-          </div>
+          <p class="card-text">Autor: {{ livro.autor }}</p>
         </li>
 
         <li>
-          <p class="card-text" *ngIf="!edicaoLivro || edicaoLivro !== livro">
-            Editora: {{ livro.editora }}
-          </p>
-          <div *ngIf="edicaoLivro === livro">
-            <input type="text" [(ngModel)]="livro.editora" />
-          </div>
+          <p class="card-text">Editora: {{ livro.editora }}</p>
         </li>
 
         <li>
-          <p class="card-text" *ngIf="!edicaoLivro || edicaoLivro !== livro">
-            Descrição: {{ livro.descricao }}
-          </p>
-          <div *ngIf="edicaoLivro === livro">
-            <input type="text" [(ngModel)]="livro.descricao" />
-          </div>
+          <p class="card-text">Descrição: {{ livro.descricao }}</p>
         </li>
 
         <li>
-          <p class="card-text" *ngIf="!edicaoLivro || edicaoLivro !== livro">
-            Genero: {{ livro.genero }}
-          </p>
-          <div *ngIf="edicaoLivro === livro">
-            <input type="text" [(ngModel)]="livro.genero" />
-          </div>
+          <p class="card-text">Genero: {{ livro.genero }}</p>
         </li>
 
         <li>
-          <p class="card-text" *ngIf="!edicaoLivro || edicaoLivro !== livro">
-            Ano de Lançamento: {{ livro.anoLancamento }}
-          </p>
-          <div *ngIf="edicaoLivro === livro">
-            <input type="text" [(ngModel)]="livro.anoLancamento" />
-          </div>
+          <p class="card-text">Ano de Lançamento: {{ livro.anoLancamento }}</p>
         </li>
       </ul>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modal-mensagem1">
+  <div class="modal-dialog">
+    <div class="modal-content" *ngFor="let livro of listaLivros">
+      <div class="modal-header">
+        <h4 class="modal-title">Atualização de dados</h4>
+        <button type="button" class="close" data-dismiss="modal">
+          <span>×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group col-md-6">
+          <label for="inpuTitulo4">Titulo</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inpuTitulo4"
+            name="titulo"
+            [(ngModel)]="livro.titulo"
+            placeholder="Digite o titulo do livro"
+          />
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputAutor4">Autor</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputAutor4"
+            name="autor"
+            [(ngModel)]="livro.autor"
+            placeholder="Digite o nome do autor"
+          />
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputEditora4">Editora</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputEditora4"
+            name="editora"
+            [(ngModel)]="livro.editora"
+            placeholder="Digite o nome do autor"
+          />
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="inputDescricao4">Descrição</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputDescricao4"
+            name="descricao"
+            [(ngModel)]="livro.descricao"
+            placeholder="Resumo do Livro"
+          />
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="inputGenero">Genero</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputGenero"
+            name="genero"
+            [(ngModel)]="livro.genero"
+            placeholder="Ação, Comédia, Romance..."
+          />
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputAno">Ano de Lançamento</label>
+          <input
+            type="number"
+            class="form-control"
+            id="inputAno"
+            name="anoLancamento"
+            [(ngModel)]="livro.anoLancamento"
+            placeholder="2000, 2012, 2005 ..."
+          />
+        </div>
+      </div>
+
+      <div class="form-group"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+          Fechar
+        </button>
+        <button
+          type="submit"
+          class="btn btn-success"
+          data-dismiss="modal"
+          [disabled]="
+            livro.titulo === '' ||
+            livro.autor === '' ||
+            livro.editora === '' ||
+            livro.descricao === '' ||
+            livro.genero == '' ||
+            livro.anoLancamento <= 1000
+          "
+          (click)="editarLivro(livro!)"
+        >
+          Atualizar
+        </button>
+      </div>
     </div>
   </div>
 </div>

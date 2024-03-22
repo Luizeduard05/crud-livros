@@ -33,6 +33,10 @@ export class LivrosCadastradosComponent implements OnInit {
     this.service.deleteLivro(id).subscribe((_) => this.ngOnInit());
   }
 
+  getLivroId(livro: ILivros) {
+    this.service.getLivrosId(livro);
+  }
+
   editarLivro(livro: ILivros) {
     if (this.edicaoLivro === livro) {
       this.edicaoLivro = '';

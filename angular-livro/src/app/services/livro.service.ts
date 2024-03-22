@@ -15,19 +15,23 @@ export class LivroService {
   getLivros() {
     return this.http.get<ILivros[]>(this.apiUrl);
   }
-
+  getLivrosId(livro: ILivros) {
+    alert(`ID CAPTURADO ${livro.id}`);
+    return this.http.get<ILivros[]>(`${this.apiUrl}/${livro.id}`);
+  }
 
   postLivros(livro: ILivros) {
+    alert(`Livro de titulo ${livro.titulo} adicionado com sucesso!`);
     return this.http.post<ILivros>(this.apiUrl, livro);
   }
 
-  putLivros(livro: ILivros){
-    return this.http.put<ILivros>(`${this.apiUrl}/${livro.id}`, livro)
+  putLivros(livro: ILivros) {
+    alert(`Livro de id ${livro.id} atualizado com sucesso!`);
+    return this.http.put<ILivros>(`${this.apiUrl}/${livro.id}`, livro);
   }
 
-
   deleteLivro(id: number) {
-    alert(`Livro de id ${id} excluido`)
+    alert(`Livro de id ${id} excluido`);
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }
