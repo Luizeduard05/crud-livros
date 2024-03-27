@@ -10,14 +10,10 @@ export class LivroService {
 
   constructor(private http: HttpClient) {}
 
-  livros: ILivros[] = [];
+  listalivros: ILivros[] = [];
 
   getLivros() {
     return this.http.get<ILivros[]>(this.apiUrl);
-  }
-  getLivrosId(livro: ILivros) {
-    alert(`ID CAPTURADO ${livro.id}`);
-    return this.http.get<ILivros[]>(`${this.apiUrl}/${livro.id}`);
   }
 
   postLivros(livro: ILivros) {

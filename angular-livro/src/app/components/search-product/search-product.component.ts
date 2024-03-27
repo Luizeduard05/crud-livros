@@ -1,11 +1,6 @@
 import {
   Component,
-  DoCheck,
-  Input,
-  OnChanges,
   OnInit,
-  Output,
-  SimpleChanges,
 } from '@angular/core';
 import { ILivros } from 'src/app/model/ILivros';
 import { LivroService } from 'src/app/services/livro.service';
@@ -26,13 +21,11 @@ export class SearchProductComponent implements OnInit {
   anoLancamento: number = 0;
 
   constructor(private service: LivroService) {
-    this.livro = this.service.livros;
+    this.livro = this.service.listalivros;
   }
 
   ngOnInit(): void {
-    this.service
-      .getLivros()
-      .subscribe((listaLivros) => (this.livro = this.livro));
+    this.service.getLivros();
   }
 
   getLivros() {
@@ -49,18 +42,8 @@ export class SearchProductComponent implements OnInit {
         genero: this.genero,
         anoLancamento: this.anoLancamento,
       })
-      .subscribe((novoLivro) => {
-        this.getLivros();
-        this.limparCampos();
+      .subscribe(() => {
+        this.ngOnInit();
       });
-  }
-
-  limparCampos() {
-    this.titulo = '';
-    this.autor = '';
-    this.editora = '';
-    this.descricao = '';
-    this.genero = '';
-    this.anoLancamento = 0;
   }
 }

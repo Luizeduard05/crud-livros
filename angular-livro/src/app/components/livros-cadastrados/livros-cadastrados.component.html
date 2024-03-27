@@ -1,3 +1,4 @@
+<!-- Lista de Livros Cadastrados -->
 <div class="container-cadastro row row-cols-2 row-cols-lg- g-2 g-lg-3">
   <div
     class="card border-dark mb-3"
@@ -8,7 +9,7 @@
       <p>ID: {{ livro.id }}</p>
       <div class="alinha-fim">
         <a
-          (click)="getLivroId(livro!)"
+          (click)="modoEdicao(livro)"
           data-toggle="modal"
           data-target="#modal-mensagem1"
           ><img src="../../../assets/img/editar.png"
@@ -46,9 +47,10 @@
   </div>
 </div>
 
+<!-- Modal de edicao -->
 <div class="modal fade" id="modal-mensagem1">
   <div class="modal-dialog">
-    <div class="modal-content" *ngFor="let livro of listaLivros">
+    <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Atualização de dados</h4>
         <button type="button" class="close" data-dismiss="modal">
@@ -63,7 +65,7 @@
             class="form-control"
             id="inpuTitulo4"
             name="titulo"
-            [(ngModel)]="livro.titulo"
+            [(ngModel)]="livroEditado.titulo"
             placeholder="Digite o titulo do livro"
           />
         </div>
@@ -74,7 +76,7 @@
             class="form-control"
             id="inputAutor4"
             name="autor"
-            [(ngModel)]="livro.autor"
+            [(ngModel)]="livroEditado.autor"
             placeholder="Digite o nome do autor"
           />
         </div>
@@ -85,7 +87,7 @@
             class="form-control"
             id="inputEditora4"
             name="editora"
-            [(ngModel)]="livro.editora"
+            [(ngModel)]="livroEditado.editora"
             placeholder="Digite o nome do autor"
           />
         </div>
@@ -97,7 +99,7 @@
             class="form-control"
             id="inputDescricao4"
             name="descricao"
-            [(ngModel)]="livro.descricao"
+            [(ngModel)]="livroEditado.descricao"
             placeholder="Resumo do Livro"
           />
         </div>
@@ -109,7 +111,7 @@
             class="form-control"
             id="inputGenero"
             name="genero"
-            [(ngModel)]="livro.genero"
+            [(ngModel)]="livroEditado.genero"
             placeholder="Ação, Comédia, Romance..."
           />
         </div>
@@ -120,7 +122,7 @@
             class="form-control"
             id="inputAno"
             name="anoLancamento"
-            [(ngModel)]="livro.anoLancamento"
+            [(ngModel)]="livroEditado.anoLancamento"
             placeholder="2000, 2012, 2005 ..."
           />
         </div>
@@ -136,14 +138,14 @@
           class="btn btn-success"
           data-dismiss="modal"
           [disabled]="
-            livro.titulo === '' ||
-            livro.autor === '' ||
-            livro.editora === '' ||
-            livro.descricao === '' ||
-            livro.genero == '' ||
-            livro.anoLancamento <= 1000
+            livroEditado.titulo === '' ||
+            livroEditado.autor === '' ||
+            livroEditado.editora === '' ||
+            livroEditado.descricao === '' ||
+            livroEditado.genero == '' ||
+            livroEditado.anoLancamento <= 1000
           "
-          (click)="editarLivro(livro!)"
+          (click)="editarLivro()"
         >
           Atualizar
         </button>
