@@ -12,41 +12,37 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/livros")
+@CrossOrigin(origins = "http://localhost:4200")
 public class LivroController {
 
     @Autowired
     private LivroService service;
 
-    @CrossOrigin(origins = "http://localhost:4200")
+
     @PostMapping
     public ResponseEntity<Livro> addLivro(@Valid @RequestBody Livro livro) {
         return service.addLivro(livro);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+
     @GetMapping
     public ResponseEntity<List<Livro>> buscarTodosLivros() {
         return service.buscarTodosLivros();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Livro>> buscarPorId(@PathVariable Long id) {
        return service.buscarPorId(id);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("/{id}")
     public ResponseEntity<Livro> updateLivro(@Valid @PathVariable Long id, @RequestBody Livro livro) {
         return service.atualizarLivro(id,livro);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("/{id}")
     public ResponseEntity<Optional<Livro>> deletarLivro(@PathVariable Long id) {
         return service.deletarLivro(id);
     }
-
-
 
 }
