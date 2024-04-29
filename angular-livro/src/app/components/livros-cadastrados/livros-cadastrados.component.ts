@@ -36,6 +36,7 @@ export class LivrosCadastradosComponent implements OnInit {
       .subscribe((listaLivros) => (this.listaLivros = listaLivros));
   }
 
+
   deleteLivro(id: number) {
     this.service.deleteLivro(id).subscribe((_) => this.ngOnInit());
   }

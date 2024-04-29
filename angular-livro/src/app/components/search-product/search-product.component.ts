@@ -25,7 +25,7 @@ export class SearchProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.service.getLivros();
+    this.getLivros();
   }
 
   getLivros() {
